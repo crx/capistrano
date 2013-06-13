@@ -183,7 +183,7 @@ module Capistrano
           # time. This could cause wierd-ness in the remote cache if the url
           # changes between calls, but as long as the repositories are all
           # based from each other it should still work fine.
-          if remote != 'origin'
+          if remote != 'origin' && remote !~ /\:/
             execute << "#{git} config remote.#{remote}.url #{variable(:repository)}"
             execute << "#{git} config remote.#{remote}.fetch +refs/heads/*:refs/remotes/#{remote}/*"
           end
